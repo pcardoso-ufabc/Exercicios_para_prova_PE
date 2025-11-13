@@ -1,0 +1,38 @@
+/*Pedro Henrique Cardoso - 11202321449
+exercicio 10
+
+10. Implemente uma fun¸c˜ao em C que recebe dois valores inteiros, minimo e maximo, aloca dinamicamente 
+um vetor de inteiros preenchendo-o com 0 (zero) em todas as posi¸c˜oes, para
+representar o intervalo [minimo, maximo]. Retorne um ponteiro para o vetor alocado. Se
+minimo > maximo, retorne NULL.
+Exemplo de Entrada:
+minimo: 5
+maximo: 10
+Exemplo de Sa´ıda:
+Vetor alocado: [0, 0, 0, 0, 0, 0]
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void vetorIntervalo(int min, int max, int intervalo, int *vetor);
+
+int main(){
+    
+    int min, max, intervalo;
+    scanf("%d %d", &min, &max);
+    intervalo = (max - min) + 1;
+    
+    int *vetor = (int *)calloc(intervalo, sizeof(int));
+    
+    vetorIntervalo(min, max, intervalo, vetor);
+    
+}
+
+void vetorIntervalo(int min, int max, int intervalo, int *vetor){
+    
+    vetor[0] = min;
+    vetor[intervalo] = max;
+    for(int i = 1; i < intervalo; i++)
+        vetor[i] = min++;
+}
