@@ -15,24 +15,42 @@ Vetor alocado: [0, 0, 0, 0, 0, 0]
 #include <stdio.h>
 #include <stdlib.h>
 
-void vetorIntervalo(int min, int max, int intervalo, int *vetor);
+int* vetorIntervalo(int min, int max);
+void imprime_vetor(int * vetor, int min, int max);
 
 int main(){
     
     int min, max, intervalo;
     scanf("%d %d", &min, &max);
-    intervalo = (max - min) + 1;
     
-    int *vetor = (int *)calloc(intervalo, sizeof(int));
+    int *vetor = vetorIntervalo(min, max);
     
-    vetorIntervalo(min, max, intervalo, vetor);
+    imprime_vetor(vetor, min, max);
+    
+    return 0;
     
 }
 
-void vetorIntervalo(int min, int max, int intervalo, int *vetor){
+int* vetorIntervalo(int min, int max){
     
-    vetor[0] = min;
-    vetor[intervalo] = max;
-    for(int i = 1; i < intervalo; i++)
-        vetor[i] = min++;
+    if(min > max)
+        return NULL;
+        
+    int intervalo = (max - min) + 1;
+    
+    int *vetor = (int *)calloc(intervalo, sizeof(int));
+        
+    return vetor;
+    
+}
+
+void imprime_vetor(int * vetor, int min, int max){
+    
+    printf("[");
+    for(int i = 0; i < (max - min) + 1; i++){
+        printf("%d", vetor[i]);
+        if(i < (max - min))
+            printf(", ");
+    }
+    printf("]\n");
 }
