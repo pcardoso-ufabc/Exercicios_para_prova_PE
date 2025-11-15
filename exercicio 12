@@ -1,5 +1,5 @@
 /*Pedro Henrique Cardoso - 11202321449
-exercicio 1
+exercicio 12
 
 12. Escreva um programa que simula o jogo “Pedra, Papel e Tesoura” entre dois jogadores. O
 programa deve ler as escolhas e indicar o vencedor.
@@ -12,6 +12,7 @@ Jogador A Venceu!
 */
 
 #include <stdio.h>
+#include <string.h>
 
 int main(){
     
@@ -20,41 +21,41 @@ int main(){
     printf("Jogador A (Pedra, Papel, Tesoura): ");
     scanf("%s", escolhaA);
     printf("Jogador B (Pedra, Papel, Tesoura): ");
-    scanf("%s", escolhaA);
+    scanf("%s", escolhaB);
     
-    switch (escolhaA){
-        case "Pedra":
-            if(escolhaB == "Pedra"){
-                printf("Empate\n");
-            } else if(escolhaB == "Papel"){
-                printf("Jogador B venceu\n");
-            }else if(escolha == "Tesoura"){
-                printf("Jogador A venceu\n");
-            }else{
-                printf("Escolha invalida para jogador B\n");
-            }
-        case "Papel":
-            if(escolhaB == "Papel"){
-                printf("Empate\n");
-            } else if(escolhaB == "Tesoura"){
-                printf("Jogador B venceu\n");
-            }else if(escolhaB == "Pedra"){
-                printf("Jogador A venceu\n");
-            }else{
-                printf("Escolha invalida para jogador B\n");
-            }
-        case "Tesoura":
-            if(escolhaB == "Tesoura"){
-                printf("Empate\n");
-            } else if(escolhaB == "Pedra"){
-                printf("Jogador B venceu\n");
-            }else if(escolhaB == "Papel"){
-                printf("Jogador A venceu\n");
-            }else{
-                printf("Escolha invalida para jogador B\n");
-            }
-        default:
-            printf("Escolha invalida para jogador A\n");
-    }
+    if(strcmp(escolhaA, "Pedra") == 0){
+        if(strcmp(escolhaB, "Pedra") == 0){
+            printf("Empate\n");
+        }else if(strcmp(escolhaB, "Papel") == 0){
+            printf("Jogador B venceu\n");
+        }else if(strcmp(escolhaB, "Tesoura") == 0){
+            printf("Jogador A venceu\n");
+        }else{
+            printf("Escolha invalida para jogador B\n");
+        }
+    }else if(strcmp(escolhaA, "Papel") == 0){
+        if(strcmp(escolhaB, "Pedra") == 0){
+            printf("Jogador A venceu\n");
+        }else if(strcmp(escolhaB, "Papel") == 0){
+            printf("Empate\n");
+        }else if(strcmp(escolhaB, "Tesoura") == 0){
+            printf("Jogador B venceu\n");
+        }else{
+            printf("Escolha invalida para jogador B\n");
+        }
+    }else if(strcmp(escolhaA, "Tesoura") == 0){
+        if(strcmp(escolhaB, "Pedra") == 0){
+            printf("Jogador B venceu\n");
+        }else if(strcmp(escolhaB, "Papel") == 0){
+            printf("Jogador A venceu\n");
+        }else if(strcmp(escolhaB, "Tesoura") == 0){
+            printf("Empate\n");
+        }else{
+            printf("Escolha invalida para jogador B\n");
+        }
+    }else{
+        printf("Escolha invalida para jogador A");
+    }    
     
+    return 0;
 }
