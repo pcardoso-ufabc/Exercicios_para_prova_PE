@@ -1,0 +1,60 @@
+/*Pedro Henrique Cardoso - 11202321449
+exercicio 1
+
+12. Escreva um programa que simula o jogo “Pedra, Papel e Tesoura” entre dois jogadores. O
+programa deve ler as escolhas e indicar o vencedor.
+Exemplo de Entrada:
+Jogador A (Pedra, Papel, Tesoura): Pedra
+Jogador B (Pedra, Papel, Tesoura): Tesoura
+Exemplo de Sa´ıda:
+Jogador A Venceu!
+
+*/
+
+#include <stdio.h>
+
+int main(){
+    
+    char escolhaA[10], escolhaB[10];
+    
+    printf("Jogador A (Pedra, Papel, Tesoura): ");
+    scanf("%s", escolhaA);
+    printf("Jogador B (Pedra, Papel, Tesoura): ");
+    scanf("%s", escolhaA);
+    
+    switch (escolhaA){
+        case "Pedra":
+            if(escolhaB == "Pedra"){
+                printf("Empate\n");
+            } else if(escolhaB == "Papel"){
+                printf("Jogador B venceu\n");
+            }else if(escolha == "Tesoura"){
+                printf("Jogador A venceu\n");
+            }else{
+                printf("Escolha invalida para jogador B\n");
+            }
+        case "Papel":
+            if(escolhaB == "Papel"){
+                printf("Empate\n");
+            } else if(escolhaB == "Tesoura"){
+                printf("Jogador B venceu\n");
+            }else if(escolhaB == "Pedra"){
+                printf("Jogador A venceu\n");
+            }else{
+                printf("Escolha invalida para jogador B\n");
+            }
+        case "Tesoura":
+            if(escolhaB == "Tesoura"){
+                printf("Empate\n");
+            } else if(escolhaB == "Pedra"){
+                printf("Jogador B venceu\n");
+            }else if(escolhaB == "Papel"){
+                printf("Jogador A venceu\n");
+            }else{
+                printf("Escolha invalida para jogador B\n");
+            }
+        default:
+            printf("Escolha invalida para jogador A\n");
+    }
+    
+}
