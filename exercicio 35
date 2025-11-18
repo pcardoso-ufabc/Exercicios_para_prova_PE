@@ -1,0 +1,60 @@
+/*Pedro Henrique Cardoso - 11202321449
+
+35. Implemente uma fun¸c˜ao em C que rotacione uma matriz quadrada de inteiros de tamanho
+n × n em 90 graus no sentido hor´ario, sem utilizar matrizes auxiliares.
+Exemplo de Entrada:
+Matriz (n = 4):
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 16
+Exemplo de Sa´ıda:
+Matriz rotacionada:
+13 9 5 1
+14 10 6 2
+15 11 7 3
+16 12 8 4
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int **lematriz(int **matriz, int n, int m);
+void printar_matriz(int **matriz, int n, int m);
+
+int main(){
+    
+    int n, m;
+    scanf("%d %d", &n, &m);
+    
+    int **matriz = NULL;
+    matriz = lematriz(matriz, n, m);
+    
+    printf("Matriz original:\n");
+    printar_matriz(matriz, n, m);
+    
+    return 0;
+}
+
+int **lematriz(int **matriz, int n, int m){
+    
+    matriz = (int**)calloc(n, sizeof(int*));
+    for (int i = 0; i < n; i++)
+        matriz[i] = (int*)calloc(m, sizeof(int));
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++)
+            scanf("%d", &matriz[i][j]);
+    }
+    
+    return matriz;
+}
+
+void printar_matriz(int **matriz, int n, int m){
+    
+    for (int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++)
+            printf("%d ", matriz[i][j]);
+        printf("\n");
+    }
+}
