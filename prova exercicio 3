@@ -1,0 +1,87 @@
+/*Pedro Henrique Cardoso - 11202321449
+
+Quest˜ao 3: Travessia de Lista Encadeada
+Listas encadeadas s˜ao estruturas de dados dinˆamicas fundamentais, mas sua travessia geralmente
+ocorre do in´ıcio para o fim. Apresentar os elementos na ordem inversa sem modificar a estrutura
+original (como uma pilha de chamadas ou um hist´orico de opera¸c˜oes) pode requerer uma abordagem
+de programa¸c˜ao diferente.
+Dada a estrutura de n´o No (com um campo letra e um ponteiro para o pr´oximo n´o), implemente
+uma fun¸c˜ao que receba uma lista simplesmente encadeada (sem n´o cabe¸ca) e imprima seus elementos
+do ´ultimo para o primeiro. A fun¸c˜ao n˜ao deve alterar a estrutura da lista nem criar uma c´opia dela.
+Ap´os a implementa¸c˜ao, exemplifique a chamada da fun¸c˜ao, mostrando tamb´em as declara¸c˜oes das
+vari´aveis exigidas para sua correta utiliza¸c˜ao.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node{
+    char letra;
+    struct node *prox;
+}No;
+
+No *insere_No(No *lista, char x);
+void imprime_inverso(No *lista);
+void libera_lista(No *lista);
+
+int main(){
+    
+    char x;
+    int n;
+    
+    scanf("%d", &n);
+    
+    No *lista = NULL;
+    
+    for(int i = 0; i < n; i++){
+        scanf(" %c", &x);
+        lista = insere_No(lista, x);
+    }
+    
+    imprime_inverso(lista);
+    libera_lista(lista);
+    
+    return 0;
+}
+
+No *insere_No(No *lista, char x){
+    
+    No *novo = NULL;
+    novo = (No *)malloc(sizeof(No));
+    if (novo == NULL){
+        printf("Erro ao alocar memoria para lista");
+        exit(1);
+    }
+    
+    novo->letra = x;
+    novo->prox = NULL;
+    
+    if(lista == NULL)
+        return novo;
+        
+    No *aux = lista;
+    while(aux->prox != NULL)
+        aux = aux->prox;
+        
+    aux->prox = novo;
+    return lista;
+}
+
+void imprime_inverso(No *lista){
+    
+    if(lista == NULL)
+        return;
+    imprime_inverso(lista->prox);
+    printf("%c ", lista->letra);
+}
+
+void libera_lista(No *lista){
+    
+    No* aux;
+    while(lista != NULL){
+        aux = lista;
+        lista = lista->prox;
+        free(aux);
+    }
+}
