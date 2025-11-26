@@ -1,0 +1,88 @@
+/*Pedro Henrique Cardoso - 11202321449
+
+Quest˜ao 4: Rota¸c˜ao de Matrizes
+A rota¸c˜ao de matrizes ´e uma opera¸c˜ao importante em computa¸c˜ao gr´afica, processamento de imagens e jogos. Quando vocˆe gira uma foto no seu celular ou um objeto em um jogo 3D, uma rota¸c˜ao de
+matriz ´e frequentemente a base dessa transforma¸c˜ao. Realizar essa opera¸c˜ao ”in-place”(diretamente
+na mem´oria original, sem criar uma c´opia da matriz) ´e crucial para otimizar o uso de mem´oria,
+especialmente com matrizes grandes.
+Implemente uma fun¸c˜ao que receba uma matriz quadrada A de inteiros (n x n) e a rotacione 90
+graus no sentido hor´ario diretamente na mem´oria original (in-place), sem alocar uma nova matriz
+para o resultado. Vocˆe pode criar fun¸c˜oes auxiliares se achar necess´ario. Ap´os a implementa¸c˜ao,
+exemplifique a chamada da fun¸c˜ao, mostrando tamb´em as declara¸c˜oes das vari´aveis exigidas para
+sua correta utiliza¸c˜ao.
+
+*/
+
+#include <stdlib.h>
+#include <stdio.h>
+
+int **le_matriz(int **matriz, int n);
+void printar_matriz(int **matriz, int n);
+void gira_matriz(int **matriz, int n);
+
+int main(){
+    
+    int n;
+    scanf("%d", &n);
+    
+    
+    int **matriz = NULL;
+    matriz = le_matriz(matriz, n);
+    
+    printf("Matriz original:\n");
+    printar_matriz(matriz, n);
+    printf("\n");
+    
+    gira_matriz(matriz, n);
+    
+    printf("Matriz rotacionada:\n");
+    printar_matriz(matriz, n);
+    
+    return 0;
+
+}
+
+int **le_matriz(int **matriz, int n){
+    
+    matriz = (int **)malloc(n * sizeof(int*));
+    for(int i = 0; i < n; i++)
+        matriz[i] = (int *)malloc(n * sizeof(int));
+        
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++)
+            scanf("%d", &matriz[i][j]);
+    }
+    
+    return matriz;
+}
+
+void printar_matriz(int **matriz, int n){
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++)
+            printf("%d ", matriz[i][j]);
+        printf("\n");
+    }
+    
+}
+
+void gira_matriz(int **matriz, int n){
+    
+    for(int i = 0; i < n; i++){
+        for(int j = i + 1; j < n; j++){
+            int temp = matriz[i][j];
+            matriz[i][j] = matriz[j][i];
+            matriz[j][i] = temp;
+        }
+    }
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n / 2; j++){
+            int temp = matriz[i][j];
+            matriz[i][j] = matriz[i][n - 1 - j];
+            matriz[i][n - 1 - j] = temp;
+        }
+        
+    }
+    
+}
