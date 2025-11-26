@@ -1,0 +1,25 @@
+/*Pedro Henrique Cardoso - 11202321449
+
+Quest˜ao 2: Gerenciamento Dinˆamico de Mem´oria
+Em muitos cen´arios de programa¸c˜ao, n˜ao sabemos antecipadamente o tamanho exato dos dados
+que precisaremos armazenar. O gerenciamento dinˆamico de mem´oria ´e essencial para adaptar o
+tamanho das estruturas de dados em tempo de execu¸c˜ao, evitando desperd´ıcio de mem´oria ou
+estouro de buffer.
+Implemente uma fun¸c˜ao que receba um ponteiro para um vetor de double e seu tamanho atual
+e o realoque para ter o dobro do tamanho original. A fun¸c˜ao deve retornar o ponteiro para o novo
+vetor e atualizar o tamanho para refletir a nova capacidade. Ap´os a implementa¸c˜ao, exemplifique
+a chamada da fun¸c˜ao, mostrando tamb´em as declara¸c˜oes das vari´aveis exigidas para sua correta
+utiliza¸c˜ao.
+
+Entrada da Fun¸c˜ao
+v = {1.1, 2.2, 3.3}
+n = 3
+
+Retorno da Fun¸c˜ao (novo vetor e tamanho)
+novo_v = {1.1, 2.2, 3.3, , , }
+novo_n = 6
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
