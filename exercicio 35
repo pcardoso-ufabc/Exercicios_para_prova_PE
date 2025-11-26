@@ -21,6 +21,7 @@ Matriz rotacionada:
 
 int **lematriz(int **matriz, int n, int m);
 void printar_matriz(int **matriz, int n, int m);
+void gira_matriz(int **matriz, int n);
 
 int main(){
     
@@ -31,6 +32,11 @@ int main(){
     matriz = lematriz(matriz, n, m);
     
     printf("Matriz original:\n");
+    printar_matriz(matriz, n, m);
+    printf("\n");
+    
+    printf("Matriz rotacionada:\n");
+    gira_matriz(matriz, n);
     printar_matriz(matriz, n, m);
     
     return 0;
@@ -56,5 +62,25 @@ void printar_matriz(int **matriz, int n, int m){
         for(int j = 0; j < m; j++)
             printf("%d ", matriz[i][j]);
         printf("\n");
+    }
+}
+
+void gira_matriz(int **matriz, int n){
+    
+    for(int i = 0; i < n; i++){
+        for(int j = i + 1; j < n; j++){
+            int temp = matriz[i][j];
+            matriz[i][j] = matriz[j][i];
+            matriz[j][i] = temp;
+        }
+    }
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n / 2; j++){
+            int temp = matriz[i][j];
+            matriz[i][j] = matriz[i][n - 1 - j];
+            matriz[i][n - 1 - j] = temp;
+        }
+        
     }
 }
