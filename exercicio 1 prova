@@ -1,0 +1,61 @@
+/*Pedro Henrique Cardoso - 11202321449
+
+Quest˜ao 1: An´alise de Extremos em Dados
+A an´alise de extremos (m´ınimo e m´aximo) ´e uma das opera¸c˜oes mais fundamentais no processamento de dados. 
+Imagine que vocˆe est´a trabalhando com leituras de sensores de temperatura ou
+pontua¸c˜oes de um jogo; identificar rapidamente os valores mais altos e mais baixos ´e importante
+para entender o comportamento dos dados.
+Implemente uma fun¸c˜ao que receba um vetor de inteiros e seu tamanho. Esta fun¸c˜ao deve
+identificar o maior e o menor valor presentes no vetor e retorn´a-los por meio de parˆametros passados
+por referˆencia. Ap´os a implementa¸c˜ao, exemplifique a chamada da fun¸c˜ao, mostrando tamb´em as
+declara¸c˜oes das vari´aveis exigidas para sua correta utiliza¸c˜ao.
+
+Entrada da Fun¸c˜ao
+vetor[] = {-7, 0, 15, -2, 8}
+tamanho = 5
+
+saida da funcao:
+minimo = -7
+maximo = 15
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void max_min(int *vetor, int *max, int *min, int tam);
+
+int main(){
+    
+    int tam, max = -999999, min = 999999;
+    scanf("%d", &tam);
+    
+    int *vetor = NULL;
+    vetor = (int *)malloc(tam * sizeof(int));
+    if(vetor == NULL){
+        printf("Falha ao alocar a memoria do vetor");
+        exit(1);
+    }
+    
+    for(int i = 0; i < tam; i++)
+        scanf("%d", &vetor[i]);
+    
+    max_min(vetor, &max, &min, tam);
+    
+    printf("Minimo = %d\n", min);
+    printf("Maximo = %d\n", max);
+    
+    return 0;
+    
+}
+
+void max_min(int *vetor, int *max, int *min, int tam){
+    
+    for(int i = 0; i < tam; i++){
+        if (vetor[i] > *max)
+            *max = vetor[i];
+            
+        if(vetor[i] < *min)
+            *min = vetor[i];
+        
+    }
+}
