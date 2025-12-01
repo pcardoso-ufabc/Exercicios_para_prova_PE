@@ -19,6 +19,7 @@ Estado do jogo: 1 (X venceu)
 int **cria_matriz(int **matriz, int n);
 void le_matriz(int **matriz, int n);
 void analisa_jogo(int **matriz, int n);
+void libera_matriz(int **matriz, int n);
 
 int main(){
     
@@ -30,6 +31,7 @@ int main(){
 
     analisa_jogo(matriz, n);
     
+    libera_matriz(matriz, n);
     
     return 0;
 }
@@ -124,4 +126,12 @@ void analisa_jogo(int **matriz, int n){
     
     printf("2 (empate)");
     
+}
+
+void libera_matriz(int **matriz, int n){
+    
+    for (int i = 0; i < n; i++)
+        free(matriz[i]);
+        
+    free(matriz);
 }
