@@ -73,30 +73,35 @@ Lista *inclui_no(Lista *lista, char x){
 
 Lista *removeTodas(Lista *l, char x){
     
-    if (x == l->dado)
+    while (l != NULL && l->dado == x) {
+        Lista *temp = l;
         l = l->prox;
-        
-    Lista *aux = l;
-    while(aux->prox->prox != NULL){
-        if(x == aux->prox->dado){
-            aux->prox = aux->prox->prox;
-            
-        }
-        aux = aux->prox;
+        free(temp);
     }
-    
-    if(aux->prox->prox == NULL && x == aux->prox->dado)
-        aux->prox = NULL;
-        
-    return l;    
+
+    if (l == NULL) 
+        return NULL;
+
+    Lista *aux = l;
+    while (aux->prox != NULL) {
+        if (aux->prox->dado == x) {
+            Lista *temp = aux->prox;
+            aux->prox = aux->prox->prox;
+            free(temp);
+        } else {
+            aux = aux->prox;
+        }
+    }
+
+    return l;
 }
 
 void imprime_lista(Lista *lista){
     
     Lista *aux = lista;
-    if(aux = NULL)
+    if(aux == NULL)
         return;
-    printf("%c", aux->dado);    
+    printf("%c ", aux->dado);    
     imprime_lista(aux->prox);    
 }
 
