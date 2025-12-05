@@ -1,6 +1,6 @@
 /*Pedro Henrique Cardoso - 11202321449
 
-Exercício 6 – Remover todas as ocorrências de um elemento
+Exercício 13 – Remover todas as ocorrências de um elemento
 Implemente uma função em C que remova todas as ocorrências do valor x na lista
 simplesmente encadeada:
 Lista removeTodas(Lista l, char x);
@@ -17,11 +17,13 @@ Exemplo:
 
 typedef struct node{
     char dado;
-    struct node prox;
+    struct node *prox;
 }Lista;
 
-Lista inclui_no(Lista lista, x);
-Lista removeTodas(Lista l, char x);
+Lista *inclui_no(Lista *lista, char x);
+Lista *removeTodas(Lista *l, char x);
+void imprime_lista(Lista *lista);
+void libera_lista(Lista *lista);
 
 int main(){
     
@@ -32,17 +34,21 @@ int main(){
     
     scanf("%d", &n);
     for (int i = 0; i < n; i++){
-        scanf("%c", &x);
+        scanf(" %c", &x);
         lista = inclui_no(lista, x);
     }
     
-    scanf("%c", &x);
+    scanf(" %c", &x);
     lista = removeTodas(lista, x);
     
+    imprime_lista(lista);
+    libera_lista(lista);
+    
+    return 0;
     
 }
 
-Lista inclui_no(Lista lista, char x){
+Lista *inclui_no(Lista *lista, char x){
     
     Lista *novo = NULL;
     novo = (Lista *)malloc(sizeof(Lista));
@@ -59,18 +65,47 @@ Lista inclui_no(Lista lista, char x){
         
     Lista *aux = lista;
     while(aux->prox != NULL)
-        aux = aux-prox;
+        aux = aux->prox;
         
     aux->prox = novo;
     return lista;
 }
 
-Lista removeTodas(Lista l, char x){
+Lista *removeTodas(Lista *l, char x){
     
+    if (x == l->dado)
+        l = l->prox;
+        
     Lista *aux = l;
-    while(aux->prox != NULL){
-        if(aux-dado == x){
+    while(aux->prox->prox != NULL){
+        if(x == aux->prox->dado){
+            aux->prox = aux->prox->prox;
             
         }
+        aux = aux->prox;
+    }
+    
+    if(aux->prox->prox == NULL && x == aux->prox->dado)
+        aux->prox = NULL;
+        
+    return l;    
+}
+
+void imprime_lista(Lista *lista){
+    
+    Lista *aux = lista;
+    if(aux = NULL)
+        return;
+    printf("%c", aux->dado);    
+    imprime_lista(aux->prox);    
+}
+
+void libera_lista(Lista *lista){
+    
+    Lista *aux = lista;
+    while(lista != NULL){
+        lista = lista->prox;
+        free(aux);
+        aux = lista;
     }
 }
